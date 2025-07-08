@@ -1,0 +1,11 @@
+<h1>Iniciar Sesión</h1>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+  <button type="submit">Entrar</button>
+  <a href="{% url 'logout_usuario' %}">Cerrar sesión</a>
+
+</form>

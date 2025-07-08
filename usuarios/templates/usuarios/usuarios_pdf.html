@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        h1 { text-align: center; }
+        table { width: 100%; border-collapse: collapse; border:2px solid red }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
+        .encabezado{
+            background-color:black; color:white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Informe de Usuarios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th class="encabezado">ID</th>
+                <th class="encabezado">Nombre</th>
+                <th class="encabezado">Correo</th>
+                <th class="encabezado">Edad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in usuarios %}
+            <tr>
+                <td>{{ u.id }}</td>
+                <td>{{ u.nombre }}</td>
+                <td>{{ u.correo }}</td>
+                <td>{{ u.edad }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Gráfico de edades</h2>
+    <img src="data:image/png;base64,{{ grafico_base64 }}" width="400"/>
+    
+</body>
+</html>

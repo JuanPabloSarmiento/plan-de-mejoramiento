@@ -1,0 +1,27 @@
+<h1>Lista de Usuarios</h1>
+{% if usuario_actual %}
+  <p class="text-right text-sm text-gray-400">
+    Bienvenido, {{ usuario_actual.nombre }} |
+    <a href="{% url 'logout_usuario' %}">Cerrar sesión</a>
+  </p>
+{% endif %}
+
+
+<a href="{% url 'crear_usuario' %}">Crear nuevo usuario</a>
+
+<ul>
+  {% for u in usuarios %}
+    <li>{{ u.nombre }} ({{ u.correo }}) - Edad: {{ u.edad }}</li>
+    <a href="{% url 'editar_usuario' u.id %}">Editar</a>
+    <a href="{% url 'eliminar_usuario' u.id %}">🗑️ Eliminar</a>
+
+  {% empty %}
+    <li>No hay usuarios registrados.</li>
+  {% endfor %}
+  <form action="{% url 'enviar_pdf_por_correo' %}" method="post" style="margin-top: 20px;">
+    {% csrf_token %}
+    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        📧 Enviar Informe por Correo
+    </button>
+</form>
+</ul>
